@@ -17,6 +17,7 @@ class MyComponent extends StreamlitComponentBase<State> {
   public state = { numClicks: 0 }
 
   public render = (): ReactNode => {
+    console.log(this.props.args)
     // Arguments that are passed to the plugin in Python are accessible
     // via `this.props.args`. Here, we access the "name" arg.
     const name = this.props.args["name"]
@@ -31,6 +32,7 @@ class MyComponent extends StreamlitComponentBase<State> {
         <button onClick={this.onClicked} disabled={this.props.disabled}>
           Click Me!
         </button>
+        <h1>hello</h1>
       </span>
     )
   }

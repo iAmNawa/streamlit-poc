@@ -15,3 +15,7 @@ npm i
 npm start   
 cd ..   
 streamlit run __init__.py   
+
+# todo    
+understand python/javascript communication
+try to use cytoscape

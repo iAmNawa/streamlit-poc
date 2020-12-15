@@ -4,8 +4,11 @@ import {
   withStreamlitConnection
 } from "streamlit-component-lib";
 import React, { ReactNode } from "react"
-import Cytoscape from 'cytoscape'
-import CytoscapeComponent from 'react-cytoscapejs'
+import Cytoscape from "cytoscape"
+import CytoscapeComponent from "react-cytoscapejs"
+//import COSEBilkent from "cytoscape-cose-bilkent"
+
+//Cytoscape.use(COSEBilkent)
 
 interface State {
   numClicks: number
@@ -23,7 +26,12 @@ class MyComponent extends StreamlitComponentBase<State> {
     // Arguments that are passed to the plugin in Python are accessible
     // via `this.props.args`. Here, we access the "name" arg.
     const name = this.props.args["name"]
-
+    const elements = [
+       { data: { id: 'one', label: 'Node 1' }},
+       { data: { id: 'two', label: 'Node 2' }},
+       { data: { source: 'one', target: 'two', label: 'Edge from Node1 to Node2' } }
+    ];
+    const layout = { name: 'cose-bilkent' };
     // Show a button and some text.
     // When the button is clicked, we'll increment our "numClicks" state
     // variable, and send its new value back to Streamlit, where it'll
@@ -34,7 +42,12 @@ class MyComponent extends StreamlitComponentBase<State> {
         <button onClick={this.onClicked} disabled={this.props.disabled}>
           Click Me!
         </button>
-        <h1>hello</h1>
+        <CytoscapeComponent
+          cy={(cy) => { this.cy = cy }}
+          elements={elements}
+          layout={layout}
+          style={{ width: '100%', height: '800px', backgroundColor: '#22c6f0' }}
+        />;
       </span>
     )
   }

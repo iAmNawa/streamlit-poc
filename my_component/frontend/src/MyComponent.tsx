@@ -4,6 +4,8 @@ import {
   withStreamlitConnection
 } from "streamlit-component-lib";
 import React, { ReactNode } from "react"
+import Cytoscape from 'cytoscape'
+import CytoscapeComponent from 'react-cytoscapejs'
 
 interface State {
   numClicks: number

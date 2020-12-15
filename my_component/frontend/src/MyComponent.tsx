@@ -20,9 +20,7 @@ interface State {
  */
 class MyComponent extends StreamlitComponentBase<State> {
   public state = { numClicks: 0 }
-
   public render = (): ReactNode => {
-    console.log(this.props.args)
     // Arguments that are passed to the plugin in Python are accessible
     // via `this.props.args`. Here, we access the "name" arg.
     const name = this.props.args["name"]
@@ -31,7 +29,7 @@ class MyComponent extends StreamlitComponentBase<State> {
        { data: { id: 'two', label: 'Node 2' }},
        { data: { source: 'one', target: 'two', label: 'Edge from Node1 to Node2' } }
     ];
-    const layout = { name: 'cose-bilkent' };
+    //const layout = { name: 'cose-bilkent' };
     // Show a button and some text.
     // When the button is clicked, we'll increment our "numClicks" state
     // variable, and send its new value back to Streamlit, where it'll
@@ -43,11 +41,12 @@ class MyComponent extends StreamlitComponentBase<State> {
           Click Me!
         </button>
         <CytoscapeComponent
+          // @ts-ignore
           cy={(cy) => { this.cy = cy }}
           elements={elements}
-          layout={layout}
           style={{ width: '100%', height: '800px', backgroundColor: '#22c6f0' }}
-        />;
+        />
+        <h1>hello</h1>
       </span>
     )
   }

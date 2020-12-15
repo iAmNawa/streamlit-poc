@@ -6,9 +6,10 @@ import {
 import React, { ReactNode } from "react"
 import Cytoscape from "cytoscape"
 import CytoscapeComponent from "react-cytoscapejs"
-//import COSEBilkent from "cytoscape-cose-bilkent"
+// @ts-ignore
+import COSEBilkent from "cytoscape-cose-bilkent"
 
-//Cytoscape.use(COSEBilkent)
+Cytoscape.use(COSEBilkent)
 
 interface State {
   numClicks: number
@@ -25,8 +26,8 @@ class MyComponent extends StreamlitComponentBase<State> {
     // via `this.props.args`. Here, we access the "name" arg.
     const name = this.props.args["name"]
     const elements = [
-       { data: { id: 'one', label: 'Node 1' }},
-       { data: { id: 'two', label: 'Node 2' }},
+       { data: { id: 'one', label: 'Node 1' }, position: {x:150,y:300}},
+       { data: { id: 'two', label: 'Node 2' }, position: {x:450,y:300}},
        { data: { source: 'one', target: 'two', label: 'Edge from Node1 to Node2' } }
     ];
     //const layout = { name: 'cose-bilkent' };
@@ -36,17 +37,15 @@ class MyComponent extends StreamlitComponentBase<State> {
     // be available to the Python program.
     return (
       <span>
-        Hello, {name}! &nbsp;
-        <button onClick={this.onClicked} disabled={this.props.disabled}>
-          Click Me!
-        </button>
+        <h1>Cytoscape graph in streamlit</h1>
         <CytoscapeComponent
           // @ts-ignore
-          cy={(cy) => { this.cy = cy }}
+          //cy={(cy) => { this.cy = cy }}
           elements={elements}
-          style={{ width: '100%', height: '800px', backgroundColor: '#22c6f0' }}
+          style={{ width: '600px', height: '600px', backgroundColor: '#22c6f0' }}
         />
-        <h1>hello</h1>
+        <h1>{this.state.numClicks}</h1>
+        <button onClick={this.onClicked}>Hello</button>
       </span>
     )
   }

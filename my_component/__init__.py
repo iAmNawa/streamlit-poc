@@ -83,8 +83,6 @@ def my_component(name, key=None):
 if not _RELEASE:
     import streamlit as st
 
-    st.subheader("Component with constant args")
-
     # Create an instance of our component with a constant `name` arg, and
     # print its output value.
     num_clicks = my_component("World")
